@@ -1,0 +1,7 @@
+{
+  "Data": {
+    "DefaultConnection": {
+      "ConnectionString": "Server=localhost;uid=sa;password=Yuuko19931101;database=chinatelecom"
+    }
+  }
+}
