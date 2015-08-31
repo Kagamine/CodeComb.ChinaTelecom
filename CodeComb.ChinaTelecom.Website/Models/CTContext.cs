@@ -11,6 +11,7 @@ namespace CodeComb.ChinaTelecom.Website.Models
     {
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Provider> Providers { get; set; }
+        public DbSet<Log> Logs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -49,6 +50,11 @@ namespace CodeComb.ChinaTelecom.Website.Models
                 e.Index(x => x.Time2);
                 e.Index(x => x.AcceptTime);
                 e.Index(x => x.FinishTime);
+            });
+
+            builder.Entity<Log>(e =>
+            {
+                e.Index(x => x.Time);
             });
         }
     }

@@ -1,80 +1,50 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>@ViewData["Title"] - CodeComb.ChinaTelecom.Website</title>
-
-        <environment names="Development">
-            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-            <link rel="stylesheet" href="~/lib/bootstrap-touch-carousel/dist/css/bootstrap-touch-carousel.css" />
-            <link rel="stylesheet" href="~/css/site.css" />
-        </environment>
-        <environment names="Staging,Production">
-            <link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/css/bootstrap.min.css"
-                  asp-fallback-href="~/lib/bootstrap/css/bootstrap.min.css"
-                  asp-fallback-test-class="hidden" asp-fallback-test-property="visibility" asp-fallback-test-value="hidden" />
-            <link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap-touch-carousel/0.8.0/css/bootstrap-touch-carousel.css"
-                  asp-fallback-href="~/lib/bootstrap-touch-carousel/css/bootstrap-touch-carousel.css"
-                  asp-fallback-test-class="carousel-caption" asp-fallback-test-property="display" asp-fallback-test-value="none" />
-            <link rel="stylesheet" href="~/css/site.css" asp-file-version="true" />
-        </environment>
-    </head>
-    <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a asp-controller="Home" asp-action="Index" class="navbar-brand">CodeComb.ChinaTelecom.Website</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-controller="Home" asp-action="About">About</a></li>
-                        <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    </ul>
-                    @await Html.PartialAsync("_LoginPartial")
-                </div>
-            </div>
-        </div>
-        <div class="container body-content">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 中国电信</title>
+    <link href="~/Styles/icons.css" rel="stylesheet" />
+    <link href="~/Styles/datetimepicker.css" rel="stylesheet" />
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script src="~/Scripts/codecomb.cascade-1.0.3.min.js"></script>
+    <script src="~/Scripts/jquery.datetimepicker.js"></script>
+    <script src="~/Scripts/site.js"></script>
+    <!--[if lte IE 7]>
+    <script src="/Scripts/json2.js"></script>
+    <![endif]-->
+    <!--[if lte IE 9]>
+    <script type="text/javascript" src="/Scripts/excanvas.js"></script>
+    <script src="/Scripts/jplaceholder.js"></script>
+    <script src="/Scripts/pie.js"></script>
+    <![endif]-->
+    <!--[if lte IE 6]>
+    <script src="/Scripts/png.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="left-sidebar">
+        <div class="sidebar-subtitle">中国电信</div>
+        <a asp-action="Index" asp-controller="Home"><div class="sidebar-menu"><i class="fa fa-home icon ico"></i>后台首页</div></a>
+        <div class="sidebar-subtitle">接入层信息</div>
+        <a asp-action="Construction" asp-controller="Provider"><div class="sidebar-menu"><i class="fa fa-sitemap icon ico"></i>施工预约统计</div></a>
+        <a asp-action="Processing" asp-controller="Provider"><div class="sidebar-menu"><i class="fa fa-tags icon ico"></i>在途工单统计</div></a>
+        <div class="sidebar-subtitle">用户层信息</div>
+        <a asp-action="Operating" asp-controller="Customer"><div class="sidebar-menu"><i class="fa fa-coffee icon ico"></i>营维公司情况</div></a>
+        <div class="sidebar-subtitle">系统信息</div>
+        <a asp-action="Log" asp-controller="Home"><div class="sidebar-menu"><i class="fa fa-info-circle icon ico"></i>工单日志</div></a>
+        <a asp-action="Index" asp-controller="Account"><div class="sidebar-menu"><i class="fa fa-user icon ico"></i>用户管理</div></a>
+        <div class="sidebar-subtitle">其他操作</div>
+        <a href="javascript: $('#frmLogout').submit()"><div class="sidebar-menu"><i class="fa fa-sign-out icon ico"></i>退出系统</div></a>
+        <form asp-action="Logout" asp-controller="Account" method="post" id="frmLogout"></form>
+    </div>
+    <div class="container">
+        <div class="wrap-cont">
             @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; 2015 - CodeComb.ChinaTelecom.Website</p>
-            </footer>
+            <div class="footer">Copyright © 2015 Harbin Code Comb Technology Co., Ltd. All rights reserved.</div>
         </div>
-
-        <environment names="Development">
-            <script src="~/lib/jquery/dist/jquery.js"></script>
-            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-            <script src="~/lib/hammer.js/hammer.js"></script>
-            <script src="~/lib/bootstrap-touch-carousel/dist/js/bootstrap-touch-carousel.js"></script>
-        </environment>
-        <environment names="Staging,Production">
-            <script src="//ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"
-                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                    asp-fallback-test="window.jQuery">
-            </script>
-            <script src="//ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/bootstrap.min.js"
-                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
-            </script>
-            <script src="//ajax.aspnetcdn.com/ajax/hammer.js/2.0.4/hammer.min.js"
-                    asp-fallback-src="~/lib/hammer.js/hammer.js"
-                    asp-fallback-test="window.Hammer">
-            </script>
-            <script src="//ajax.aspnetcdn.com/ajax/bootstrap-touch-carousel/0.8.0/js/bootstrap-touch-carousel.js"
-                    asp-fallback-src="~/lib/bootstrap-touch-carousel/dist/js/bootstrap-touch-carousel.js"
-                    asp-fallback-test="window.Hammer && window.Hammer.Instance">
-            </script>
-            <script src="~/js/site.js" asp-file-version="true"></script>
-        </environment>
-
-        @RenderSection("scripts", required: false)
-    </body>
+    </div>
+</body>
 </html>

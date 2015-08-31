@@ -12,6 +12,7 @@ namespace CodeComb.ChinaTelecom.Website.Controllers
     public class ApiController : BaseController
     {
         // GET: /<controller>/
+        [HttpGet]
         public IActionResult GetLastCustomerId()
         {
             var customer = DB.Customers.OrderByDescending(x => x.Id).FirstOrDefault();
@@ -21,6 +22,7 @@ namespace CodeComb.ChinaTelecom.Website.Controllers
                 return Content(customer.Id);
         }
 
+        [HttpGet]
         public IActionResult GetLastProviderId()
         {
             var provider = DB.Providers.OrderByDescending(x => x.Id).FirstOrDefault();
@@ -30,20 +32,64 @@ namespace CodeComb.ChinaTelecom.Website.Controllers
                 return Content(provider.Id);
         }
 
+        [HttpPost]
         public IActionResult InsertCustomer(Customer customer)
         {
             if (DB.Customers.Any(x => x.Id == customer.Id))
-                return Content("false");
-            DB.Customers.Add(customer);
+            {
+                var cust = DB.Customers.Where(x => x.Id == customer.Id).Single();
+                cust.AccessTime = customer.AccessTime;
+                cust.Account = customer.Account;
+                cust.Address = customer.Address;
+                cust.Area = customer.Area;
+                cust.BizRecoverTime = customer.BizRecoverTime;
+                cust.ComplainTime = customer.ComplainTime;
+                cust.Content = customer.Content;
+                cust.CreateTime = customer.CreateTime;
+                cust.CustomerLevel = customer.CustomerLevel;
+                cust.CustomerName = customer.CustomerName;
+                cust.EndTime = customer.EndTime;
+                cust.FaultDetail = customer.FaultDetail;
+                cust.FaultRecoverTime = customer.FaultRecoverTime;
+                cust.FaultResource = customer.FaultResource;
+                cust.Phone = customer.Phone;
+                cust.Product = customer.Product;
+                cust.ReceiveTime = customer.ReceiveTime;
+                cust.RepairPost = customer.RepairPost;
+                cust.RepairUnit = customer.RepairUnit;
+                cust.Status = customer.Status;
+            }
+            else
+            {
+                DB.Customers.Add(customer);
+            }
             DB.SaveChanges();
             return Content("true");
         }
 
+        [HttpPost]
         public IActionResult InsertProvider(Provider provider)
         {
             if (DB.Providers.Any(x => x.Id == provider.Id))
-                return Content("false");
-            DB.Providers.Add(provider);
+            {
+                var prov = DB.Providers.Where(x => x.Id == provider.Id).Single();
+                prov.AcceptTime = provider.AcceptTime;
+                prov.Account = provider.Account;
+                prov.Address = provider.Address;
+                prov.Event = provider.Event;
+                prov.Event2 = provider.Event2;
+                prov.FinishTime = provider.FinishTime;
+                prov.Product = provider.Product;
+                prov.RepairPost = provider.RepairPost;
+                prov.RepairUnit = provider.RepairUnit;
+                prov.Status = provider.Status;
+                prov.Time1 = provider.Time1;
+                prov.Time2 = provider.Time2;
+            }
+            else
+            {
+                DB.Providers.Add(provider);
+            }
             DB.SaveChanges();
             return Content("true");
         }

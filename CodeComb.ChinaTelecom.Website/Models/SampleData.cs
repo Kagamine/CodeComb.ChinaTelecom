@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 using Microsoft.Framework.DependencyInjection;
 
 namespace CodeComb.ChinaTelecom.Website.Models
@@ -19,7 +20,12 @@ namespace CodeComb.ChinaTelecom.Website.Models
                     {
                         if (await sqlServerDatabase.EnsureCreatedAsync())
                         {
-                            //
+                            var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
+                            var result = await userManager.CreateAsync(new User
+                            {
+                                Email = "1@1234.sh",
+                                UserName = "Admin"
+                            }, "ChinaTelecom123!@#");
                         }
                     }
                     else
