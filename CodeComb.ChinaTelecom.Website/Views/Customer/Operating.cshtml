@@ -1,0 +1,27 @@
+﻿@model IEnumerable<OperatingViewModel>
+<h2>投诉营维公司情况</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>营维公司名称</th>
+            <th>数量</th>
+            <th>超时数量</th>
+            <th>即将超时</th>
+            <th>平均费时</th>
+            <th>超4小时</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        { 
+            <tr>
+                <td>@x.Unit</td>
+                <td>@x.Count</td>
+                <td>@x.TimeOut</td>
+                <td>@x.WillTimeOut</td>
+                <td>@x.Average</td>
+                <td>@x.TimeOut4H</td>
+            </tr>
+        }
+    </tbody>
+</table>

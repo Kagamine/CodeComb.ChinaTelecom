@@ -29,12 +29,13 @@ namespace CodeComb.ChinaTelecom.Website.Controllers
                     Unit = x.Key.Unit,
                     Count = x.Count(),
                     TimeOut = x.Where(y => timeout > y.ReceiveTime).Count(),
-                    WillTimeOut = x.Where(y=>willtimeout>y.ReceiveTime).Count(),
+                    WillTimeOut = x.Where(y => willtimeout > y.ReceiveTime).Count(),
                     Average = x
                         .Where(y => y.ReceiveTime.HasValue && y.EndTime.HasValue)
                         .Average(y => (y.EndTime.Value - y.ReceiveTime.Value).TotalHours),
                     TimeOut4H = x.Where(y => timeout4h > y.ReceiveTime).Count()
-                });
+                })
+                .ToList();
             return View(ret);
         }
     }
