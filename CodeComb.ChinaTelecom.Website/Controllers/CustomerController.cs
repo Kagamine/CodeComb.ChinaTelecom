@@ -23,10 +23,10 @@ namespace CodeComb.ChinaTelecom.Website.Controllers
             var willtimeout = time.Value.AddHours(-10);
             var ret = DB.Customers
                 .ToList()
-                .GroupBy(x => new { Unit = x.RepairUnit })
+                .GroupBy(x => x.RepairUnit)
                 .Select(x => new OperatingViewModel
                 {
-                    Unit = x.Key.Unit,
+                    Unit = x.Key,
                     Count = x.Count(),
                     TimeOut = x.Where(y => timeout > y.ReceiveTime).Count(),
                     WillTimeOut = x.Where(y => willtimeout > y.ReceiveTime).Count(),
