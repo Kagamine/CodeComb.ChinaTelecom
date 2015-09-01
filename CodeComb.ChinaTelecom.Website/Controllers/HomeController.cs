@@ -20,7 +20,7 @@ namespace CodeComb.ChinaTelecom.Website.Controllers
 
         public IActionResult Log()
         {
-            return View();
+            return PagedView(DB.Logs.OrderByDescending(x => x.Time));
         }
     }
 }

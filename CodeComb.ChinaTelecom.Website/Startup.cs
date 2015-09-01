@@ -22,6 +22,7 @@ using Microsoft.Framework.Logging.Console;
 using Microsoft.Framework.Runtime;
 using CodeComb.ChinaTelecom.Website.Models;
 using CodeComb.ChinaTelecom.Website.Services;
+using System.Threading;
 
 namespace CodeComb.ChinaTelecom.Website
 {
@@ -43,6 +44,8 @@ namespace CodeComb.ChinaTelecom.Website
             }
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
+
+            
         }
 
         public IConfiguration Configuration { get; set; }

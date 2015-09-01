@@ -93,5 +93,20 @@ namespace CodeComb.ChinaTelecom.Website.Controllers
             DB.SaveChanges();
             return Content("true");
         }
+        
+        public IActionResult Log()
+        {
+            DB.Logs.Add(new Log
+            {
+                Id = Guid.NewGuid(),
+                Time = DateTime.Now,
+                TotalCustomer = DB.Customers.Count(),
+                TotalProvider = DB.Providers.Count(),
+                PendingCustomer = DB.Customers.Where(x => x.Status == "正在处理中").Count(),
+                PendingProvider = DB.Providers.Where(x => x.Status == "ACCEPT").Count()
+            });
+            DB.SaveChanges();
+            return Content("true");
+        }
     }
 }
