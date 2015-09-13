@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Log>
+@{
+    ViewBag.Title = "查看日志";
+}
+
+<h2>查看日志</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>时间日期</th>
+            <th>用户层处理中</th>
+            <th>用户层总数</th>
+            <th>接入层处理中</th>
+            <th>接入层总数</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        { 
+            <tr>
+                <td>@x.Time</td>
+                <td>@x.PendingCustomer</td>
+                <td>@x.TotalCustomer</td>
+                <td>@x.PendingProvider</td>
+                <td>@x.TotalProvider</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.MakePager("pager-item", "active", "pager")
